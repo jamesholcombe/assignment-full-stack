@@ -1,5 +1,4 @@
-export type RecordSearchRequest = {
-  textSearch?: string;
+export type RecordSearchRequest = RecordSearchFilters & {
   offset: number;
   limit: number;
 };
@@ -29,4 +28,5 @@ export type RecordSearchResponse = {
 
 export type RecordSearchFilters = {
   textSearch?: string;
+  buyerId?: string;
 };

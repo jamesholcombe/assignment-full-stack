@@ -27,6 +27,7 @@ export const handleRecordSearch = async (req: Request, res: Response) => {
   const records = await searchRecords(
     {
       textSearch: requestPayload.textSearch,
+      buyerId: requestPayload.buyerId,
     },
     offset,
     limit + 1
@@ -46,34 +47,38 @@ export const handleRecordSearch = async (req: Request, res: Response) => {
  * Queries the database for procurement records according to the search filters.
  */
 async function searchRecords(
-  { textSearch }: RecordSearchFilters,
+  { textSearch, buyerId }: RecordSearchFilters,
   offset: number,
   limit: number
 ): Promise<ProcurementRecord[]> {
-  if (textSearch) {
-    return await sequelize.query(
-      "SELECT * FROM procurement_records WHERE title LIKE :textSearch OR description LIKE :textSearch LIMIT :limit OFFSET :offset",
-      {
-        model: ProcurementRecord, // by setting this sequelize will return a list of ProcurementRecord objects
-        replacements: {
-          textSearch: `%${textSearch}%`,
-          offset: offset,
-          limit: limit,
-        },
+  // using conditional operator to check if textSearch or buyerId is present
+  // if present, add WHERE clause to the query
+  // if both are present, add AND clause to the query
+  console.log("textSearch", textSearch);
+  console.log("buyerId", buyerId);
+  return await sequelize.query(
+    `SELECT * 
+      FROM procurement_records
+      ${textSearch || buyerId ? "WHERE" : ""}
+      ${
+        textSearch
+          ? "(title LIKE :textSearch OR description LIKE :textSearch)"
+          : ""
       }
-    );
-  } else {
-    return await sequelize.query(
-      "SELECT * FROM procurement_records LIMIT :limit OFFSET :offset",
-      {
-        model: ProcurementRecord,
-        replacements: {
-          offset: offset,
-          limit: limit,
-        },
-      }
-    );
-  }
+      ${textSearch && buyerId ? "AND" : ""}
+      ${buyerId ? "(buyer_id = :buyerId)" : ""}  
+      LIMIT :limit 
+      OFFSET :offset`,
+    {
+      model: ProcurementRecord, // by setting this sequelize will return a list of ProcurementRecord objects
+      replacements: {
+        textSearch: `%${textSearch}%`,
+        buyerId: buyerId,
+        offset: offset,
+        limit: limit,
+      },
+    }
+  );
 }
 
 /**

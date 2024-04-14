@@ -24,6 +24,7 @@ function RecordSearchPage() {
   const [page, setPage] = React.useState<number>(1);
   const [searchFilters, setSearchFilters] = React.useState<SearchFilters>({
     query: "",
+    buyerId: null,
   });
 
   const [records, setRecords] = React.useState<ProcurementRecordDto[]>([]);
@@ -33,8 +34,11 @@ function RecordSearchPage() {
   React.useEffect(() => {
     void (async () => {
       const api = new Api();
+
+      console.log("searchFilters", searchFilters);
       const response = await api.searchRecords({
         textSearch: searchFilters.query,
+        buyerId: searchFilters.buyerId ?? undefined,
         limit: PAGE_SIZE,
         offset: PAGE_SIZE * (page - 1),
       });

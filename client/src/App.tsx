@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { Content, Footer, Header } from "antd/lib/layout/layout";
-import RecordSearchPage from "./RecordSearchPage";
+import RecordSearchPage from "./components/RecordSearchPage";
 import Sider from "antd/lib/layout/Sider";
 import "./App.css";
 

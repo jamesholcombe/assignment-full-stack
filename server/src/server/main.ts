@@ -1,6 +1,7 @@
 import express from "express";
 
 import { handleRecordSearch } from "./controllers/recordSearch";
+import { handleGetBuyers } from "./controllers/getBuyers";
 
 /**
  * This file has little structure and doesn't represent production quality code.
@@ -27,6 +28,7 @@ app.get("/", (_req, res) => {
 app.use(express.json());
 
 app.post("/api/records", handleRecordSearch);
+app.get("/api/buyers", handleGetBuyers);
 
 app.listen(app.get("port"), () => {
   console.log("  App is running at http://localhost:%d", app.get("port"));

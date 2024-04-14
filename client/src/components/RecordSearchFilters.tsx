@@ -1,6 +1,7 @@
 import { AutoComplete, Input } from "antd";
 import React from "react";
 import { SearchFilters } from "./types";
+import BuyerFilter from "./BuyerFilter";
 
 type Props = {
   filters: SearchFilters;
@@ -27,6 +28,7 @@ function RecordSearchFilters(props: Props) {
         value={filters.query}
         onChange={handleQueryChange}
       />
+      <BuyerFilter filters={filters} onChange={onChange} />
     </div>
   );
 }
