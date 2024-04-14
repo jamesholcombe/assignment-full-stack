@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import React from "react";
+
 import { ProcurementRecordDto } from "../../../server/src/server/types";
 
 type Props = {

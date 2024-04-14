@@ -1,3 +1,5 @@
+// TODO create DTOs using generics, where we use Omit to exclude data from fe
+
 export type RecordSearchRequest = RecordSearchFilters & {
   offset: number;
   limit: number;

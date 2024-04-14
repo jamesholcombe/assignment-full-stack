@@ -3,6 +3,11 @@ import { Request, Response } from "express";
 import { sequelize } from "../db/sequelize";
 import { Buyer } from "../db/Buyer";
 
+/**
+ * Get buyers from the database, using optional search text query param
+ * @param req Request object
+ * @param res Response object
+ */
 export async function handleGetBuyers(req: Request, res: Response) {
   const searchText = req.query.searchText as string;
 
@@ -14,7 +19,7 @@ export async function handleGetBuyers(req: Request, res: Response) {
 
 export async function getBuyers(searchText: string): Promise<BuyerDto[]> {
   const limit = 10;
-  // TODO remove hardcoded limit
+  // TODO remove hardcoded limit, possibly expose it as a query param if fe needs it?
 
   // if searchText is empty, return all buyers
   return await sequelize.query(

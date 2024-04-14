@@ -54,8 +54,7 @@ async function searchRecords(
   // using conditional operator to check if textSearch or buyerId is present
   // if present, add WHERE clause to the query
   // if both are present, add AND clause to the query
-  console.log("textSearch", textSearch);
-  console.log("buyerId", buyerId);
+
   return await sequelize.query(
     `SELECT * 
       FROM procurement_records

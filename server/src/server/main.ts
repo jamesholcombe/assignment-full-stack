@@ -13,6 +13,8 @@ import { handleGetBuyers } from "./controllers/getBuyers";
  * You can switch to using the ORM features or continue using SQL.
  */
 
+// TODO: use zod to validate request payloads
+
 const app = express();
 
 app.set("port", process.env.PORT || 3000);

@@ -35,7 +35,6 @@ function RecordSearchPage() {
     void (async () => {
       const api = new Api();
 
-      console.log("searchFilters", searchFilters);
       const response = await api.searchRecords({
         textSearch: searchFilters.query,
         buyerId: searchFilters.buyerId ?? undefined,
@@ -56,6 +55,7 @@ function RecordSearchPage() {
 
   const handleChangeFilters = React.useCallback((newFilters: SearchFilters) => {
     setSearchFilters(newFilters);
+
     setPage(1); // reset pagination state
   }, []);
 
@@ -73,7 +73,14 @@ function RecordSearchPage() {
         <>
           <RecordsTable records={records} />
           {!reachedEndOfSearch && (
-            <Button onClick={handleLoadMore}>Load more</Button>
+            <Button
+              style={{
+                margin: "0.5rem",
+              }}
+              onClick={handleLoadMore}
+            >
+              Load more
+            </Button>
           )}
         </>
       )}

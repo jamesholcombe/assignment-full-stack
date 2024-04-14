@@ -11,7 +11,7 @@ export function useBuyers(searchText: string) {
         `/api/buyers?` + new URLSearchParams({ searchText })
       );
       const data = await response.json();
-      console.log("buyers", data);
+
       setBuyers(data);
       setLoading(false);
     }

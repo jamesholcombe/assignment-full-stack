@@ -1,7 +1,7 @@
 import { AutoComplete, Input } from "antd";
 import { SearchFilters } from "./types";
 import { BuyerDto } from "../../../server/src/server/types";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useBuyers } from "../hooks/useBuyers";
 
 type Props = {
@@ -15,8 +15,6 @@ function BuyerFilter(props: Props) {
   const [buyerText, setBuyerText] = useState<string>("");
 
   const { buyers, loading } = useBuyers(buyerText);
-
-  console.log(buyers);
 
   const onSelect = (
     buyerName: string,
@@ -40,18 +38,25 @@ function BuyerFilter(props: Props) {
   return (
     <div>
       <AutoComplete
-        style={{ width: 200 }}
         options={buyers.map((buyer: BuyerDto) => {
           return { value: buyer.name, label: buyer.name, id: buyer.id };
         })}
+        allowClear={true}
         value={buyerText}
         onChange={handleChange}
         onSelect={onSelect}
+        onClear={() => {
+          onChange({ ...filters, buyerId: "" });
+        }}
         onSearch={(searchText) => {
           setBuyerText(searchText);
         }}
       >
-        <Input size="large" placeholder="Search buyer"></Input>
+        <Input
+          style={{ height: "50px", width: "500px" }}
+          size="large"
+          placeholder="Search for a buyer..."
+        ></Input>
       </AutoComplete>
     </div>
   );
