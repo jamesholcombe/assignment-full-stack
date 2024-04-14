@@ -39,6 +39,24 @@ function RecordsTable(props: Props) {
         title: "Buyer name",
         render: (record: ProcurementRecord) => record.buyer.name,
       },
+      {
+        title: "Stage",
+        render: (record: ProcurementRecord) => {
+          if (record.stage === "TENDER") {
+            const closeDate = new Date(record.closeDate!);
+            return closeDate > new Date()
+              ? `Open until ${record.closeDate}`
+              : "Closed";
+          } else {
+            return `Awarded on ${record.awardDate}`;
+          }
+        },
+      },
+      {
+        title: "Value",
+        render: (record: ProcurementRecord) =>
+          record.value ? `${record.value} ${record.currency}` : "",
+      },
     ];
   }, []);
   return (
