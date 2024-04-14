@@ -5,7 +5,7 @@ import {
   ProcurementRecordDto,
   RecordSearchRequest,
   RecordSearchResponse,
-} from "./api_types";
+} from "./types";
 import { Buyer } from "./db/Buyer";
 import { ProcurementRecord } from "./db/ProcurementRecord";
 

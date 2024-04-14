@@ -1,34 +1,12 @@
-export type SearchRecordsRequest = {
-  textSearch?: string;
-  limit: number;
-  offset: number;
-};
-
-export type ProcurementRecord = {
-  id: string;
-  title: string;
-  description: string;
-  publishDate: string;
-  buyer: {
-    id: string;
-    name: string;
-  };
-  stage: "TENDER" | "CONTRACT";
-  closeDate: string | null;
-  awardDate: string | null;
-  value: number | null;
-  currency: string | null;
-};
-
-export type SearchRecordsResponse = {
-  records: ProcurementRecord[];
-  endOfResults: boolean;
-};
+import type {
+  RecordSearchRequest,
+  RecordSearchResponse,
+} from "../../server/src/server/types";
 
 class Api {
   async searchRecords(
-    request: SearchRecordsRequest
-  ): Promise<SearchRecordsResponse> {
+    request: RecordSearchRequest
+  ): Promise<RecordSearchResponse> {
     const response = await fetch("/api/records", {
       method: "POST",
       headers: {

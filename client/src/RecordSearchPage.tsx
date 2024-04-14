@@ -1,8 +1,9 @@
 import { Button } from "antd";
 import React from "react";
-import Api, { ProcurementRecord } from "./Api";
+import Api from "./Api";
 import RecordSearchFilters, { SearchFilters } from "./RecordSearchFilters";
 import RecordsTable from "./RecordsTable";
+import type { ProcurementRecordDto } from "../../server/src/server/types";
 
 /**
  * This component implements very basic pagination.
@@ -24,9 +25,7 @@ function RecordSearchPage() {
     query: "",
   });
 
-  const [records, setRecords] = React.useState<
-    ProcurementRecord[] | undefined
-  >();
+  const [records, setRecords] = React.useState<ProcurementRecordDto[]>([]);
 
   const [reachedEndOfSearch, setReachedEndOfSearch] = React.useState(false);
 
@@ -43,6 +42,7 @@ function RecordSearchPage() {
         setRecords(response.records);
       } else {
         // append new results to the existing records
+
         setRecords((oldRecords) => [...oldRecords, ...response.records]);
       }
       setReachedEndOfSearch(response.endOfResults);

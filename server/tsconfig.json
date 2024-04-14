@@ -6,9 +6,9 @@
     "allowJs": true,
     "outDir": "dist",
     // STOTLES NOTE: Set to true if you want to enable strict TS checks
-    "strict": false,
-    // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
-    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    "strict": true,
+    "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
     "baseUrl": "./",
     "esModuleInterop": true,
     "skipLibCheck": true,

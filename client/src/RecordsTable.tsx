@@ -1,29 +1,29 @@
 import { Table } from "antd";
 import { ColumnType } from "antd/lib/table";
 import React from "react";
-import { ProcurementRecord } from "./Api";
+import type { ProcurementRecordDto } from "../../server/src/server/types";
 import ProcurementRecordPreviewModal from "./ProcurementRecordPreview";
 
 type Props = {
-  records: ProcurementRecord[];
+  records: ProcurementRecordDto[];
 };
 
 function RecordsTable(props: Props) {
   const { records } = props;
   const [previewedRecord, setPreviewedRecord] = React.useState<
-    ProcurementRecord | undefined
+    ProcurementRecordDto | undefined
   >();
 
-  const columns = React.useMemo<ColumnType<ProcurementRecord>[]>(() => {
+  const columns = React.useMemo<ColumnType<ProcurementRecordDto>[]>(() => {
     return [
       {
         title: "Published",
-        render: (record: ProcurementRecord) =>
+        render: (record: ProcurementRecordDto) =>
           new Date(record.publishDate).toLocaleDateString(),
       },
       {
         title: "Title",
-        render: (record: ProcurementRecord) => {
+        render: (record: ProcurementRecordDto) => {
           const handleClick = (e: React.MouseEvent) => {
             e.preventDefault();
             setPreviewedRecord(record);
@@ -37,11 +37,11 @@ function RecordsTable(props: Props) {
       },
       {
         title: "Buyer name",
-        render: (record: ProcurementRecord) => record.buyer.name,
+        render: (record: ProcurementRecordDto) => record.buyer.name,
       },
       {
         title: "Stage",
-        render: (record: ProcurementRecord) => {
+        render: (record: ProcurementRecordDto) => {
           if (record.stage === "TENDER") {
             const closeDate = new Date(record.closeDate!);
             return closeDate > new Date()
@@ -54,7 +54,7 @@ function RecordsTable(props: Props) {
       },
       {
         title: "Value",
-        render: (record: ProcurementRecord) =>
+        render: (record: ProcurementRecordDto) =>
           record.value ? `${record.value} ${record.currency}` : "",
       },
     ];

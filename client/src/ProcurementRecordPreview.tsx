@@ -1,9 +1,9 @@
 import { Modal } from "antd";
 import React from "react";
-import { ProcurementRecord } from "./Api";
+import { ProcurementRecordDto } from "../../server/src/server/types";
 
 type Props = {
-  record?: ProcurementRecord;
+  record?: ProcurementRecordDto;
   onClose: () => void;
 };
 
