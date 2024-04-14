@@ -1,9 +1,6 @@
-import { Input } from "antd";
+import { AutoComplete, Input } from "antd";
 import React from "react";
-
-export type SearchFilters = {
-  query: string;
-};
+import { SearchFilters } from "./types";
 
 type Props = {
   filters: SearchFilters;

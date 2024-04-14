@@ -1,9 +1,10 @@
 import { Button } from "antd";
 import React from "react";
-import Api from "./Api";
-import RecordSearchFilters, { SearchFilters } from "./RecordSearchFilters";
+import Api from "../services/Api";
+import RecordSearchFilters from "./RecordSearchFilters";
+import type { SearchFilters } from "./types";
 import RecordsTable from "./RecordsTable";
-import type { ProcurementRecordDto } from "../../server/src/server/types";
+import type { ProcurementRecordDto } from "../../../server/src/server/types";
 
 /**
  * This component implements very basic pagination.

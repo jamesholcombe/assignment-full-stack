@@ -1,7 +1,7 @@
 import { Table } from "antd";
 import { ColumnType } from "antd/lib/table";
 import React from "react";
-import type { ProcurementRecordDto } from "../../server/src/server/types";
+import type { ProcurementRecordDto } from "../../../server/src/server/types";
 import ProcurementRecordPreviewModal from "./ProcurementRecordPreview";
 
 type Props = {

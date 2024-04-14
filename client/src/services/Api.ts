@@ -1,7 +1,7 @@
 import type {
   RecordSearchRequest,
   RecordSearchResponse,
-} from "../../server/src/server/types";
+} from "../../../server/src/server/types";
 
 class Api {
   async searchRecords(
